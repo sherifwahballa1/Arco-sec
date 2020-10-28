@@ -1,0 +1,14 @@
+{
+  "dbURI": "mongodb://localhost:27017/arcosec",
+  "host": "http://localhost:5100",
+  "ticketValidationInDays": 365,
+	"banDurationInHours": 9,
+	"freeRetriesOnStrictRoutes": 100,
+	"timeBetweenPasswordResetsInHours": 1,
+	"maxLogins": 3,
+	"maxTicketUsagePerHour": 1500000,
+	"foreignIpBlockInDays": 365,
+	"scanBlockInDays": 15,
+	"tempTokenDurationInHours": 0.5,
+	"timeZone": "Africa/Cairo"
+}
