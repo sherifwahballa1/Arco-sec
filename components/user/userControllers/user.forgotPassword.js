@@ -10,11 +10,11 @@ async function forgotPassword (req, res, next) {
     
     const user = await User.findOne().or([{ email: value.email }, { name: value.email }]);
 
-    if (!user) return res.status(409).send({ message: 'Team not found, enter a valid email' });
+    if (!user) return res.status(409).json({ message: 'Team not found, enter a valid email' });
     
     if (user.forgotPasswordNextResetAt > Date.now())  return res.status(400).send({ message: 'Try again in a few minutes' });
   
-    if (user.otpNextResendAt > Date.now()) return res.status(400).send({ message: 'Try again in a few minutes' });
+    if (user.otpNextResendAt > Date.now()) return res.status(400).json({ message: 'Try again in a few minutes' });
 
     user.updateOtp();
     user.updateResetPasswordCounter();
@@ -25,7 +25,7 @@ async function forgotPassword (req, res, next) {
     const token = user.signTempJWT();
     return res.status(200).send({ token, email: value.email });
   } catch (error) {
-    return res.status(500).send({ message: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal server error' });
   }
 }
 

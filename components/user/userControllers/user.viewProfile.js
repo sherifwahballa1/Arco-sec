@@ -8,7 +8,7 @@ async function viewProfile(req, res) {
     if (req.params.id) userID = req.params.id;
     else userID = req.userData._id;
 
-    if (!mongoose.Types.ObjectId.isValid(userID)) return res.status(400).send({ message: "Invalid Team" });
+    if (!mongoose.Types.ObjectId.isValid(userID)) return res.status(400).json({ message: "Invalid Team" });
     
 
     let user = await User.findOne({ _id: userID },
@@ -18,7 +18,7 @@ async function viewProfile(req, res) {
 
     return res.status(200).send(user);
   } catch (e) {
-    return res.status(500).send({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 }
 

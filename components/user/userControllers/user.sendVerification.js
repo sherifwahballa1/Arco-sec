@@ -5,7 +5,7 @@ const User = require("../user.model");
 async function sendVerification(req, res) {
   try {
     const user = await User.findById(req.userData._id);
-    if (user && user.isVerified) return res.status(401).json({ message: "User is already verified" });
+    // if (user && user.isVerified) return res.status(401).json({ message: "User is already verified" });
 
     // if otp next resend time didn't expire
     let timeInSeconds = (user.otpNextResendAt - new Date()) / 1000;
@@ -28,7 +28,7 @@ async function sendVerification(req, res) {
 
     return res.status(200).send(responseBody);
   } catch (error) {
-    return res.status(500).send({ message: "Internal server error try again later" });
+    return res.status(500).json({ message: "Internal server error try again later" });
   }
 }
 

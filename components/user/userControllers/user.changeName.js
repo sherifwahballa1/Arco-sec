@@ -9,7 +9,7 @@ async function updateName(req, res, next) {
     
 
     const user = await User.findById(req.userData._id);
-    if (!user) return res.status(401).send({ message: "Unauthorized Team Please Login" });
+    if (!user) return res.status(401).json({ message: "Unauthorized Team Please Login" });
     
     let foundName = await User.findOne({ name: value.name, _id: { $ne: req.userData._id } });
     if (foundName) {
@@ -18,9 +18,9 @@ async function updateName(req, res, next) {
 
     user.name = value.name;
     await user.save();
-    return res.status(200).send({ message: "Team Name Updated Successfully" });
+    return res.status(200).json({ message: "Team Name Updated Successfully" });
   } catch (error) {
-    return res.status(500).send({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 }
 

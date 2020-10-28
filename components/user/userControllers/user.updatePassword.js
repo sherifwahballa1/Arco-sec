@@ -9,20 +9,20 @@ async function updatePassword(req, res, next) {
     
 
     const team = await User.findById(req.userData._id);
-    if (!user) return res.status(401).send({ message: "Unauthorized Team Please Login" });
+    if (!user) return res.status(401).json({ message: "Unauthorized Team Please Login" });
     const isPasswordValid = await user.isPasswordValid(req.body.oldPassword);
-    if (!isPasswordValid) return res.status(409).send({ message: "Old Password Incorrect" });
+    if (!isPasswordValid) return res.status(409).json({ message: "Old Password Incorrect" });
     
 
     if (value.oldPassword === value.newPassword) {
-      return res.status(409).send({ message: "New password must not be the same as old password" });
+      return res.status(409).json({ message: "New password must not be the same as old password" });
     }
 
     user.password = value.newPassword;
     await user.save();
-    return res.status(200).send({ message: "Password Updated Successfully" });
+    return res.status(200).json({ message: "Password Updated Successfully" });
   } catch (error) {
-    return res.status(500).send({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 }
 

@@ -29,7 +29,7 @@ async function verify(req, res) {
       return res.status(200).json({ token, userData: user });
     });
   } catch (error) {
-    return res.status(500).send({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 }
 

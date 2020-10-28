@@ -24,7 +24,7 @@ async function signup(req, res) {
     return res.status(200).send({ token });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({ message: "Internal server error" });
+    return res.status(500).json({ message: "Internal server error" });
   }
 }
 
