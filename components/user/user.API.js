@@ -12,7 +12,8 @@ const {
   forgotPassword,
   resetPassword,
   viewProfile,
-  changeName
+  changeName,
+  getEmails
 } = require('./userControllers');
 
 
@@ -25,6 +26,7 @@ router.post("/verify", Security.validateTempToken, verify);
 // -----------------------
 router.post("/profile", Security.auth(['user']), viewProfile );
 router.post("/update-name", Security.auth(['user']), changeName);
+router.post("/emails", Security.auth(['admin', 'user']), getEmails);
 // -----------------------
 router.post('/user-profile/:id', Security.auth(['user']), viewProfile);
 // -----------------------
