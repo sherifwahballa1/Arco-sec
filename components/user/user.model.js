@@ -3,22 +3,7 @@ const jwt = require("jsonwebtoken");
 const config = require("../../config");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
-
-const Tag = new mongoose.Schema({
-  name : { type: String, required: true },
-  value : { type: String, required: true }
-})
-
-const Mail = new mongoose.Schema({
-  sender : { type: String, required: true },
-  subject : { type: String, required: true },
-  tags : { type: [Tag], default: [] }
-})
-
-const OutboxMail = new mongoose.Schema({
-  mail: { type: Mail, required: true },
-  isRead: { type: Boolean, default: false }
-})
+const {Tag, Mail, InboxMail} = require("./mail.model")
 
 const User = new mongoose.Schema(
   {
@@ -35,8 +20,8 @@ const User = new mongoose.Schema(
     otpRequestCounter: { type: Number, default: 0 },
     forgotPasswordNextResetAt: { type: Date, default: Date.now },
     forgotPasswordResetCounter: { type: Number, default: 0 },
-    inbox: {type: [Mail], default: []},
-    outbox: {type: [OutboxMail], default: []},
+    sentMails: {type: [Mail], default: []},
+    inbox: {type: [InboxMail], default: []},
     role: { type: String, default: "user" }
   },
   { usePushEach: true }

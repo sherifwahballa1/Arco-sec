@@ -13,7 +13,8 @@ const {
   resetPassword,
   viewProfile,
   changeName,
-  getEmails
+  getEmails,
+  createMail
 } = require('./userControllers');
 
 
@@ -34,6 +35,7 @@ router.post('/user-profile/:id', Security.auth(['user']), viewProfile);
 router.post("/updatePassword", Security.auth(['user']), updatePassword );
 router.post("/forgetPassword", forgotPassword);
 router.post("/resetPassword", Security.validateTempToken, resetPassword);
-
+// -----------------------
+router.post("/createMail", createMail)
 
 module.exports = router;

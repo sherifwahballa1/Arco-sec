@@ -68,12 +68,19 @@ const otpSchema = {
     .rule({ message: 'invalid code' })
 };
 
+const mailSchema = {
+  sender: joi.string().required(),
+  subject: joi.string().required(),
+  tags: joi.array()
+}
+
 module.exports = {
   signup: joi.object(signupSchema),
   login: joi.object(loginSchema),
   updatePassword: joi.object(updatePasswordSchema),
   leaderBoard: joi.object(getLeaderBoard),
   otpSchema: joi.object(otpSchema),
+  // todo addMail: joi.object(mailSchema),
   forgotPassword: joi.object({ email: loginSchema.email }),
   resetPassword: joi.object({ password: signupSchema.password }),
   userNameSchema: joi.object({ name: signupSchema.name})

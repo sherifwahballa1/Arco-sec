@@ -9,6 +9,7 @@ const forgotPassword = require('./user.forgotPassword');
 const viewProfile = require('./user.viewProfile');
 const changeName = require('./user.changeName');
 const getEmails = require('./user.getEmails');
+const createMail = require('./user.addMail')
 
 module.exports = {
   signup,
@@ -20,5 +21,6 @@ module.exports = {
   forgotPassword,
   viewProfile,
   changeName,
-  getEmails
+  getEmails,
+  createMail
 };
