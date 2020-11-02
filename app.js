@@ -23,6 +23,7 @@ const pjson = require("./package.json");
 const Logger = require("./modules/logger.js");
 const appCrons = require("./crons");
 const Security = require("./security");
+let socket = require('./socket');
 
 const { UserAPI } = require("./components/user");
 
@@ -171,6 +172,9 @@ if (Config.canUseCustomErrorPages) {
 }
 
 const server = require("http").createServer(app);
+socket.socketStart(server);
+
+
 server.listen(app.get("port"), function () {
   console.log(
     ` ################## ${pjson.name} \n ##################  ${
