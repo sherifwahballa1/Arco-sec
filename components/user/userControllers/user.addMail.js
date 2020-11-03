@@ -22,9 +22,9 @@ async function createMail(req, res) {
 
     updateSender = await User.findOneAndUpdate({ _id: mail.sender }, {
       $push: {
-        sentMails: mail
+        sentMails: mail,
       }
-    }, { new: true })
+    }, { new: true });
 
 
     updaterReciver = await User.findOneAndUpdate({ _id: mail.receiver }, {
@@ -46,3 +46,13 @@ async function createMail(req, res) {
 
 
 module.exports = createMail;
+
+
+function setMail(s, mail) {
+  if (s === 'sender') {
+    mail['isRead'] = true;
+  } else {
+      mail['isRead'] = false;
+  }
+  return mail;
+}

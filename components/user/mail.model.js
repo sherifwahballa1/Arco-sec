@@ -12,6 +12,7 @@ const Mail = new mongoose.Schema({
   subject: { type: String, required: true },
   body: { type: String, required: true },
   tags: { type: [Tag], default: [] },
+  isRead: { type: Boolean, default: false }
 }, { timestamps: true, usePushEach: true })
 
 

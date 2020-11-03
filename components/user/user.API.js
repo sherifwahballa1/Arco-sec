@@ -43,6 +43,6 @@ router.post("/createMail", Security.auth(['user']), createMail);
 
 router.get("/inbox-mails", Security.auth(['user']), getInboxMessages);
 router.get("/sent-mails", Security.auth(['user']), getSentMessages);
-router.get("/mail/:mailId", Security.validateTempToken, resetPassword);
+router.get("/mail/:mailId", Security.auth(['user']), getMailById);
 
 module.exports = router;
