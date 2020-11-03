@@ -129,7 +129,7 @@ Security.masking(app);
 // set port
 app.set("port", PORT);
 
-// app.use(express.static(`${__dirname }/clients/wargame_front`));
+app.use(express.static(`${__dirname }/Demo/dist`));
 
 app.use("/api/user", UserAPI);
 
@@ -138,14 +138,14 @@ app.use("/api/user", UserAPI);
 // activate all cron jobs
 appCrons();
 
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve('./clients/wargame_front/index.html'));
-// });
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('./Demo/dist/index.html'));
+});
 
 // redirect client
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve('./clients/wargame_front/index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('./Demo/dist/index.html'));
+});
 
 if (Config.canUseCustomErrorPages) {
   // Handle 500
