@@ -33,9 +33,10 @@ async function createMail(req, res) {
       }
     }, { new: true })
 
-    let mailID = mail._id
+    let mailID = mail._id;
+    let receiverID =  mail.receiver;
 
-    return res.status(200).send(mailID);
+    return res.status(200).send({ mailID, receiverID });
 
   } catch (error) {
     console.log(error);

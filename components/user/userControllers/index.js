@@ -9,7 +9,10 @@ const forgotPassword = require('./user.forgotPassword');
 const viewProfile = require('./user.viewProfile');
 const changeName = require('./user.changeName');
 const getEmails = require('./user.getEmails');
-const createMail = require('./user.addMail')
+const createMail = require('./user.addMail');
+const getInboxMessages =  require('./user.getInboxMessages');
+const getSentMessages = require('./user.getSentMessages');
+const getMailById = require('./user.getMailById');
 
 module.exports = {
   signup,
@@ -22,5 +25,9 @@ module.exports = {
   viewProfile,
   changeName,
   getEmails,
-  createMail
+  createMail,
+  getInboxMessages,
+  getSentMessages,
+  getMailById
+
 };

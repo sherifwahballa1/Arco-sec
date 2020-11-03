@@ -14,7 +14,10 @@ const {
   viewProfile,
   changeName,
   getEmails,
-  createMail
+  createMail,
+  getInboxMessages,
+  getSentMessages,
+  getMailById
 } = require('./userControllers');
 
 
@@ -36,6 +39,10 @@ router.post("/updatePassword", Security.auth(['user']), updatePassword);
 router.post("/forgetPassword", forgotPassword);
 router.post("/resetPassword", Security.validateTempToken, resetPassword);
 // -----------------------
-router.post("/createMail", Security.auth(['user']), createMail)
+router.post("/createMail", Security.auth(['user']), createMail);
+
+router.get("/inbox-mails", Security.auth(['user']), getInboxMessages);
+router.get("/sent-mails", Security.auth(['user']), getSentMessages);
+router.get("/mail/:mailId", Security.validateTempToken, resetPassword);
 
 module.exports = router;
