@@ -32,7 +32,7 @@ const { UserAPI } = require("./components/user");
 // const downloadFile =  require('./components/challenge/challengeControllers/challenge.download');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5100;
 
 // database connection
 mongoose.connect(
@@ -177,8 +177,7 @@ socket.socketStart(server);
 
 server.listen(app.get("port"), function () {
   console.log(
-    ` ################## ${pjson.name} \n ##################  ${
-      Config.currentEnv
+    ` ################## ${pjson.name} \n ##################  ${Config.currentEnv
     }  \n ################## running on port : ${app.get("port")}`
   );
 });
